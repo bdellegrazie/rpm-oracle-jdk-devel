@@ -18,4 +18,3 @@ make JDK_MAJOR=8 JDK_MINOR=0 JDK_PATCH=112
 
 Where the Oracle JDK we're producing an RPM for is 1.8.0_112
 The leading '1' is assumed at this time.
-
