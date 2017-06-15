@@ -1,11 +1,11 @@
 JDK_MAJOR:=8
 JDK_MINOR:=0
-JDK_PATCH:=112
+JDK_PATCH:=131
 ITERATION:=1
 ARCH:=native
 BUILD_DIR:=build
 
-.PHONY: rpm rpm-clean clean packages
+.PHONY: rpm rpm-clean clean dist-clean packages
 
 all: packages
 
@@ -28,12 +28,7 @@ rpm: rpm-clean
  -D'_rpmdir   $(PWD)/$(BUILD_DIR)/RPMS'\
  -D'_sourcedir $(PWD)'\
  -D'_buildrootdir $(PWD)/$(BUILD_DIR)/BUILDROOT'\
- jdk-devel.spec
+ jdk-helper.spec
 	mv $(BUILD_DIR)/RPMS/$$(uname -m)/*.rpm .
 
 packages: rpm
-
-clean: rpm-clean
-
-dist-clean: clean
-
