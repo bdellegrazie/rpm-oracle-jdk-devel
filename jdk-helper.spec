@@ -1,6 +1,6 @@
 %global jdk_major %{?jdk_version_major}%{!?jdk_version_major:8}
 %global jdk_minor %{?jdk_version_minor}%{!?jdk_version_minor:0}
-%global jdk_patch %{?jdk_version_patch}%{!?jdk_version_patch:131}
+%global jdk_patch %{?jdk_version_patch}%{!?jdk_version_patch:152}
 %global iteration %{?ITERATION}%{!?ITERATION:1}
 
 %global jdk_version_api   1.%{jdk_major}.%{jdk_minor}
@@ -66,6 +66,8 @@ done
 [[ -f "%{jre_home}/lib/security/cacerts.divert" ]] && mv -f "%{jre_home}/lib/security/cacerts.divert" "%{jre_home}/lib/security/cacerts"
 
 %changelog
+* Wed Oct 20 2017 Brett Delle Grazie <patrickfmarques@gmail.com> - 1.8.0_152
+- Updated to 1.8.0_152
 * Wed Jun 14 2017 Brett Delle Grazie <brett.dellegrazie@gmail.com> - 1.8.0_131-1
 - Renamed to jdk-<version>-helper
 - Updated to 1.8.0_131
