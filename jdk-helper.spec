@@ -1,6 +1,6 @@
 %global jdk_major %{?jdk_version_major}%{!?jdk_version_major:8}
 %global jdk_minor %{?jdk_version_minor}%{!?jdk_version_minor:0}
-%global jdk_patch %{?jdk_version_patch}%{!?jdk_version_patch:152}
+%global jdk_patch %{?jdk_version_patch}%{!?jdk_version_patch:162}
 %global iteration %{?ITERATION}%{!?ITERATION:1}
 
 %global jdk_version_api   1.%{jdk_major}.%{jdk_minor}
@@ -13,7 +13,7 @@
 %global jce_home %{_datadir}/%{jce_name}
 %global pki_dir %{_sysconfdir}/pki
 
-Name:           jdk%{jdk_version_full}-helper
+Name:           jdk%{jdk_version_api_major}-helper
 Version:        %{jdk_version_full}
 Release:        %{iteration}%{?dist}
 Summary:        Oracle JDK Development Dummy Package
@@ -66,6 +66,9 @@ done
 [[ -f "%{jre_home}/lib/security/cacerts.divert" ]] && mv -f "%{jre_home}/lib/security/cacerts.divert" "%{jre_home}/lib/security/cacerts"
 
 %changelog
+* Fri Jan 19 2018 Brett Delle Grazie <brett.dellegrazie@gmail.com> - 1.8.0_162-1
+- Updated to 1.8.0_162
+- RPM rename due to Oracle JDK rename in 1.8.0_144
 * Wed Oct 20 2017 Brett Delle Grazie <patrickfmarques@gmail.com> - 1.8.0_152
 - Updated to 1.8.0_152
 * Wed Jun 14 2017 Brett Delle Grazie <brett.dellegrazie@gmail.com> - 1.8.0_131-1
