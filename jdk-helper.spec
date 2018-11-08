@@ -1,6 +1,6 @@
 %global jdk_major %{?jdk_version_major}%{!?jdk_version_major:8}
 %global jdk_minor %{?jdk_version_minor}%{!?jdk_version_minor:0}
-%global jdk_patch %{?jdk_version_patch}%{!?jdk_version_patch:181}
+%global jdk_patch %{?jdk_version_patch}%{!?jdk_version_patch:191}
 %global iteration %{?ITERATION}%{!?ITERATION:1}
 
 %ifarch x86_64 amd64
@@ -49,23 +49,21 @@ Dummy package to ensure "provides" for Oracle's JDK are available to the OS to a
 %files
 
 # Symlink CA certs
-%triggerin -p /bin/bash -- jdk%{jdk_version_api_major}=2000:%{jdk_version_full}-fcs
+%post -p /bin/bash
 [[ -f "%{jre_home}/lib/security/cacerts" ]] && mv -f "%{jre_home}/lib/security/cacerts" "%{jre_home}/lib/security/cacerts.divert"
 ln -sf "%{pki_dir}/java/cacerts" "%{jre_home}/lib/security/cacerts"
 
-%triggerun -- jdk%{jdk_version_api_major}=%{jdk_version_full}
-[[ -h "%{jre_home}/lib/security/cacerts" ]] && rm -f "%{jre_home}/lib/security/cacerts"
-[[ -f "%{jre_home}/lib/security/cacerts.divert" ]] && mv -f "%{jre_home}/lib/security/cacerts.divert" "%{jre_home}/lib/security/cacerts"
-
-%triggerpostun -- jdk%{jdk_version_api_major}=%{jdk_version_full}
+%preun -p /bin/bash
 [[ -h "%{jre_home}/lib/security/cacerts" ]] && rm -f "%{jre_home}/lib/security/cacerts"
 [[ -f "%{jre_home}/lib/security/cacerts.divert" ]] && mv -f "%{jre_home}/lib/security/cacerts.divert" "%{jre_home}/lib/security/cacerts"
 
 %changelog
+* Thu Nov 08 2018 Brett Delle Grazie <brett.dellegrazie@gmail.com> - 1.8.0_191-1
+- Updated to 1.8.0_191
+- Fixed up symlink behaviour
 * Wed Oct 24 2018 Brett Delle Grazie <brett.dellegrazie@gmail.com> - 1.8.0_181-1
 - Updated to 1.8.0_181
 - Removed Policy JAR management (no longer required) so the corresponding JCE RPM is not required either
-
 * Fri Jan 19 2018 Brett Delle Grazie <brett.dellegrazie@gmail.com> - 1.8.0_162-1
 - Updated to 1.8.0_162
 - RPM rename due to Oracle JDK rename in 1.8.0_144
